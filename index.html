@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title>旅行记账</title>
+<title>钱包去哪儿 - 2026年国庆版</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 <style>
@@ -204,7 +204,7 @@
     margin-bottom: 2px;
   }
   .page-head .one-line {
-    font-size: 13.5px;
+    font-size: 15px;
     font-weight: 700;
     color: var(--gray-900);
     line-height: 1.4;
@@ -216,7 +216,7 @@
   }
   .page-head .one-line .dim {
     font-weight: 500;
-    font-size: 11px;
+    font-size: 12px;
     color: var(--gray-500);
   }
   /* 标题右侧剩余预算 */
@@ -246,8 +246,8 @@
   .remain-pill.over .val { color: #b98080; }
   /* 窄屏：压缩标题字号，确保信息不被截断 */
   @media (max-width: 390px) {
-    .page-head .one-line { font-size: 12.5px; padding: 4px 66px 0 10px; }
-    .page-head .one-line .dim { font-size: 10px; }
+    .page-head .one-line { font-size: 13.5px; padding: 4px 66px 0 10px; }
+    .page-head .one-line .dim { font-size: 11px; }
   }
 </style>
 </head>
@@ -256,7 +256,7 @@
 
   <!-- 顶部标题 -->
   <header class="page-head">
-    <div class="one-line" id="headLine">旅行记账</div>
+    <div class="one-line" id="headLine">钱包去哪儿📓 <span class="dim">- 2026年国庆版🐶</span></div>
     <div class="remain-pill" id="remainPill">
       <span class="lbl">剩余预算</span>
       <span class="val">¥<span id="v-remain">10,000</span></span>
@@ -620,24 +620,9 @@ function renderOverview() {
   document.getElementById('v-percent').textContent = pct;
   document.getElementById('progressBar').style.width = pct + '%';
   document.getElementById('v-avg').textContent = state.people ? (spent/state.people).toFixed(0) : '0';
-  // 标题：合成一句话居中
-  const full = (state.destination || '').trim();
-  const parts = full.split('·').map(x => x.trim()).filter(Boolean);
-  const title = parts.length ? parts[parts.length - 1] : '旅行记账';
-
-  const fmt = s => s ? s.slice(5).replace('-', '.') : '';
-  const range = state.startDate && state.endDate
-    ? `${fmt(state.startDate)}–${fmt(state.endDate)}`
-    : (state.startDate ? fmt(state.startDate) : '');
-  const dayCnt = (state.startDate && state.endDate)
-    ? Math.max(1, Math.round((new Date(state.endDate) - new Date(state.startDate))/86400000) + 1)
-    : 0;
-  const dim = [];
-  if (range) dim.push(range);
-  if (dayCnt) dim.push(`${dayCnt} 天`);
-  if (state.people) dim.push(`${state.people} 人`);
+  // 标题：固定文案
   document.getElementById('headLine').innerHTML =
-    title + (dim.length ? ` <span class="dim">· ${dim.join(' · ')}</span>` : '');
+    '钱包去哪儿📓 <span class="dim">- 2026年国庆版🐶</span>';
 }
 
 document.getElementById('btnAdd').addEventListener('click', () => {
